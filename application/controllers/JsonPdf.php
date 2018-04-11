@@ -86,7 +86,14 @@ class JsonPdf extends CI_Controller {
         $parser = new \Smalot\PdfParser\Parser();
         $pdf = $parser->parseFile($uploadPath);
 
+		 $pages = $pdf->getPages();
+
+           foreach ($pages as $page) {
+            echo $page->getText();
+           }
+		
         // Loop over each property to extract details of PDF Document (Creator,CreationDate,Pages..)
+		/*
                $details  = $pdf->getDetails();
                 foreach ($details as $property => $value) {
                     if (is_array($value)) {
@@ -94,11 +101,6 @@ class JsonPdf extends CI_Controller {
                     }
                     echo $property . ' => ' . $value . "\n";
                 }
-
-        /*$pages = $pdf->getPages();
-
-           foreach ($pages as $page) {
-            echo $page->getText();
-           }*/
+				*/
     }
 }
